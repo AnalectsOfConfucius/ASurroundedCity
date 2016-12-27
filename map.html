@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
-
+    <title>党员数量分布地图</title>
     <!-- Bootstrap -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -15,67 +14,110 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-      .yyh-title {
-        background: blue;
-        font-weight: bold;
-        font-size: 30px;
-        color: white;
-        border:1px solid white;
-      }
-      .yyh-title .yyh-title-number {
-        color: red;
-      }
-      .yyh-table table {
-        border:1px solid white;
-      }
-    </style>
   </head>
   <body>
-
     <div class="container-fluid">
-
       <div class="row">
         <div class="col-md-3">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
         </div>
         <div class="col-md-6">
-          <div class="row text-center yyh-title">
-            今日业务办理情况统计
-          </div>
-          <div class="row">
-            <div id="echarts-map-chart" style="height:400px"></div>
-          </div>
+          <div id="echarts-map-chart" style="height:800px"></div>
        </div>
         <div class="col-md-3">
-          <div class="row text-center yyh-title">
-            在线人数:<span class="yyh-title-number">242</span>
-          </div>
         </div>
       </div>
-
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/js/bootstrap.min.js"></script>
     <!-- ECharts单文件引入 -->
     <script src="/assets/js/echarts-all.js"></script>
     <script type="text/javascript">
+        var data = [{
+              name: '儋州市',
+              value: 10000,
+            }, {
+              name: '文昌市',
+              value: 20000,
+            }, {
+              name: '乐东黎族自治县',
+              value: 3000,
+            }, {
+              name: '三亚市',
+              value: 40000,
+            }, {
+              name: '琼中黎族苗族自治县',
+              value: 1000,
+            }, {
+              name: '东方市',
+              value: 1232,
+            }, {
+              name: '海口市',
+              value: 32133,
+            }, {
+              name: '万宁市',
+              value: 22311,
+            }, {
+              name: '澄迈县',
+              value: 11232,
+            }, {
+              name: '白沙黎族自治县',
+              value: 15314,
+            }, {
+              name: '琼海市',
+              value: 32212,
+            }, {
+              name: '昌江黎族自治县',
+              value: 21232,
+            }, {
+              name: '临高县',
+              value: 12123,
+            }, {
+              name: '陵水黎族自治县',
+              value: 12311,
+            }, {
+              name: '屯昌县',
+              value: 5512,
+            }, {
+              name: '定安县',
+              value: 6611,
+            }, {
+              name: '保亭黎族苗族自治县',
+              value: 7712,
+            }, {
+              name: '五指山市',
+              value: 9231,
+            }];
         var mapChart = echarts.init(document.getElementById("echarts-map-chart"));
         var mapoption = {
-          tooltip: {
-            trigger: 'item',
-            formatter: '{b}'
+          title : {
+            text: '海南省党员分布图',
+            subtext: '纯属虚构',
+            x:'center'
+          },
+          dataRange: {
+            min: 0,
+            max: 50000,
+            x: 'left',
+            y: 'bottom',
+            text:['高','低'],           // 文本，默认为数值文本
+            calculable : true
+          },
+          tooltip : {
+            trigger: 'item'
+          },
+          legend: {
+            orient: 'vertical',
+            x:'left',
+            data:['中共党员']
           },
           series: [{
-            name: '中国',
+            name: '中共党员',
             type: 'map',
             mapType: '海南',
-            selectedMode: 'multiple',
+            roam: false,
             itemStyle: {
               normal: {
                 label: {
@@ -88,61 +130,7 @@
                 }
               }
             },
-            data: [{
-              name: '儋州市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '文昌市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '乐东黎族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '三亚市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '琼中黎族苗族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '东方市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '海口市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '万宁市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '澄迈县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '白沙黎族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '琼海市',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '昌江黎族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '临高县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '陵水黎族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '屯昌县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '定安县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '保亭黎族苗族自治县',
-              value: Math.round(Math.random() * 1000)
-            }, {
-              name: '五指山市',
-              value: Math.round(Math.random() * 1000)
-            }]
+            data: data,
           }]
         };
         mapChart.setOption(mapoption);
